@@ -1,1 +1,2 @@
-echo "echo goodbye" > goodbye.sh
+#!/bin/bash
+echo "goodbye"
