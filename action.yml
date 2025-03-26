@@ -1,0 +1,30 @@
+name: hello world
+description: testing out github actions
+inputs:
+  who-to-greet: # input id
+    description: who to greet
+    required: true
+    default: "world"
+outputs:
+  random-number: # output id
+    description: "random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
+runs:
+  using: "composite"
+  steps:
+    - name: Set Greeting
+      run: echo "Hello $INPUT_WHO_TO_GREET"
+      shell: bash
+      env:
+        INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }} # input id!
+
+    - name: Random Number Generator
+      id: random-number-generator
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH # add action path to runner system path, to locate the script
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+      shell: bash
+
+    - name: Run goodbye.sh
+      run: goodbye.sh
+      shell: bash
