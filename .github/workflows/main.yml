@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: ./
+        uses: ./.github/actions
         with:
           who-to-greet: "Sam" # passing in to the input id an id
       - run: echo random-number "$RANDOM_NUMBER"
