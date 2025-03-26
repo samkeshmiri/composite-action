@@ -25,6 +25,11 @@ runs:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
       shell: bash
 
+    - name: actual random number
+      id: random
+      run: echo "$RANDOM"
+      shell: bash
+
     - name: Run goodbye.sh
       run: ./goodbye.sh
       shell: bash
